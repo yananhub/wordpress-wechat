@@ -1,0 +1,56 @@
+/**about.wxss**/
+
+.about {
+    padding-top: 10rpx;
+}
+
+.about .userinfo {
+    margin: 12rpx 0;
+    padding-bottom: 20rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background-color: white;
+}
+
+.about .userinfo .share-btn {
+    border-width: 0;
+    display: block;
+    padding: 0;
+    width: 50rpx;
+    height: 50rpx;
+    position: absolute;
+    top: 20rpx;
+    right: 40rpx;
+}
+
+.about .userinfo .share-btn image {
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.about .userinfo .userinfo-avatar {
+    width: 128rpx;
+    height: 128rpx;
+    margin: 20rpx;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.about .userinfo .userinfo-nickname {
+    color: #aaa;
+}
+
+.about .content-row {
+    margin: 12rpx 0;
+    padding: 0 40rpx;
+    height: 1020rpx;
+    background-color: white;
+}
+
+.error-msg {
+    padding: 0 40rpx;
+    color: red;
+    font-size: 30rpx;
+}

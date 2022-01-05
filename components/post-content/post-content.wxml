@@ -1,0 +1,2 @@
+<!--components/post-content/post-content.wxml-->
+<rich-text class="entry-content" nodes="{{contentModel}}"></rich-text>

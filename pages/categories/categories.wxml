@@ -1,0 +1,9 @@
+<!--pages/categories/categories.wxml-->
+<scroll-view class="tabNav" scroll-x="true" enable-flex="true">
+    <view wx:for="{{navTab}}" wx:key="id" data-current-tab="{{item}}" bindtap="onTabChange"
+        class="tab-item {{currentTab.id == item.id ? 'current-tab' : ''}}">
+        <text>{{item.name}}</text>
+    </view>
+</scroll-view>
+
+<post-list class="post-list" query-param="{{queryParam}}"></post-list>

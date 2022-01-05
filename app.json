@@ -1,0 +1,43 @@
+{
+    "pages": [
+        "pages/posts/posts",
+        "pages/post-details/post-details",
+        "pages/categories/categories",
+        "pages/about/about"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#2E3641",
+        "navigationBarTitleText": "知行千米",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+        "selectedColor": "#d9534f",
+        "list": [
+            {
+                "pagePath": "pages/posts/posts",
+                "text": "文章",
+                "iconPath": "/icons/posts.png",
+                "selectedIconPath": "/icons/posts_fill.png"
+            },
+            {
+                "pagePath": "pages/categories/categories",
+                "text": "分类",
+                "iconPath": "/icons/categories.png",
+                "selectedIconPath": "/icons/categories_fill.png"
+            },
+            {
+                "pagePath": "pages/about/about",
+                "text": "关于",
+                "iconPath": "/icons/about.png",
+                "selectedIconPath": "/icons/about_fill.png"
+            }
+        ]
+    },
+    "usingComponents": {
+        "post-list": "/components/post-list/post-list",
+        "post-content": "/components/post-content/post-content"
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,25 @@
+/* pages/post-details/post-details.wxss */
+
+.post-details {
+    padding: 0 30rpx;
+}
+
+.error-msg {
+    color: red;
+}
+
+.post-details .title {
+    font-size: 50rpx;
+    font-weight: bold;
+}
+
+.post-details .title .quote {
+    border-left: solid 12rpx #d9534f;
+    margin-left: -24rpx;
+    padding-left: 12rpx;
+}
+
+.post-details .sub-title {
+    color: gray;
+    font-size: 28rpx;
+}

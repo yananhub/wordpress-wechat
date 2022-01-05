@@ -1,0 +1,2 @@
+<!--pages/posts/posts.wxml-->
+<post-list query-param="{{queryParam}}"></post-list>

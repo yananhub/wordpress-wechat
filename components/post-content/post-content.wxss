@@ -1,0 +1,45 @@
+/* components/post-content/post-content.wxss */
+
+:host {
+    display: block;
+}
+
+.entry-content {
+    /* line-height: 24rpx; */
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', 'Hiragino Sans GB', '微软雅黑', 'WenQuanYi Micro Hei', STHeiti, SimSun, sans-serif;
+}
+
+.wp-h4, .wp-h5, .wp-h6 {
+    margin: 20rpx 0;
+}
+
+.wp-p {
+    /* line-height: 2em; */
+    margin: 20rpx 0;
+}
+
+.wp-block-code {
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+    /* display: block; */
+    overflow: auto;
+    padding: 20rpx;
+    margin: 20rpx 0;
+    font-size: 26rpx;
+    line-height: 1.4;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    background-color: #f5f5f5;
+    border: 1rpx solid #ccc;
+    border-radius: 4rpx;
+}
+
+.wp-block-image {
+    margin: 20rpx 0;
+}
+
+.wp-img {
+    max-width: 100%;
+    height: auto;
+}

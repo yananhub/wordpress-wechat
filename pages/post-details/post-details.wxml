@@ -1,0 +1,8 @@
+<!--pages/post-details/post-details.wxml-->
+
+<view class="container post-details">
+    <view class="title mtb-10"><text class="quote">{{postDetailsModel.title.rendered}}</text></view>
+    <view class="sub-title mtb-10">{{postDetailsModel.modified}}</view>
+    <post-content class="content mtb-10" content="{{postDetailsModel.content.rendered}}"></post-content>
+    <view class="error-msg">{{errorMsg}}</view>
+</view>

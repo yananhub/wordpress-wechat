@@ -1,0 +1,21 @@
+<!--components/post-list/post-list.wxml-->
+<scroll-view class="post-container" scroll-y="true" enable-flex="true">
+    <view class="post-item" wx:for="{{postList}}" wx:key="id" bindtap="toPostDetailsPage" hover-class="item-hover" hover-stay-time="1000" data-post-obj="{{item}}">
+        <view class="post-img">
+            <!-- <image src="{{item.imageBigUrl}}"></image> -->
+            <image src="/icons/default_doc.png" class="img"></image>
+        </view>
+        <view class="post-info">
+            <view class="title">
+                <text class="name">{{item.title.rendered}}</text>
+            </view>
+            <view class="time">
+                <text class="not-onmarket">{{item.modified}}</text>
+            </view>
+            <view class="introduction">{{item.excerpt.rendered}}</view>
+        </view>
+    </view>
+</scroll-view>
+<view class="no-more-data" wx:if="{{showNoMoreData}}">
+    <text>没有更多数据</text>
+</view>

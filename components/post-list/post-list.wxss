@@ -1,0 +1,76 @@
+/* components/post-list/post-list.wxss */
+
+:host {
+    display: block;
+}
+
+.post-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.item-hover {
+    opacity: 0.9;
+    background: #dadada !important;
+}
+
+.post-item {
+    display: flex;
+    margin: 10rpx 0;
+    height: 190rpx;
+    background-color: #f9f9f9;
+    padding: 20rpx 30rpx;
+}
+
+.post-item .post-img {
+    width: 30%;
+    height: 100%;
+}
+
+.post-item .post-img .img {
+    width: 100%;
+    height: 100%;
+}
+
+.post-item .post-info {
+    width: 70%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-left: 20rpx;
+}
+
+.post-item .post-info .title {
+    /* height: 30%; */
+    position: relative;
+}
+
+.post-item .post-info .title .name {
+    font-size: 30rpx;
+    font-weight: bold;
+}
+
+.post-item .post-info .time .not-onmarket {
+    font-size: 28rpx;
+    /* font-style: oblique; */
+    color: #d9534f;
+}
+
+.post-item .post-info .introduction {
+    height: 78rpx;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    color: gray;
+    font-size: 28rpx;
+}
+
+.no-more-data {
+    padding: 30rpx;
+    font-size: 28rpx;
+    color: gray;
+    text-align: center;
+  }

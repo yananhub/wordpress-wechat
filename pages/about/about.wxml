@@ -1,0 +1,12 @@
+<!--pages/about.wxml-->
+
+<view class="container about">
+    <view class="userinfo">
+        <button open-type="share" plain="true" class="share-btn">
+            <image src="/icons/share.svg"></image>
+        </button>
+        <image class="userinfo-avatar" src="/icons/zhixing_logo.jpg"></image>
+        <text class="userinfo-nickname">知行千米</text>
+    </view>
+    <post-content class="content-row" content="{{pageModel.content.rendered}}"></post-content>
+</view>
