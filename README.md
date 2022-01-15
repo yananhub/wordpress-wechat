@@ -1,9 +1,20 @@
-# wordpress-wechat
-A WeChat Mini Program for WordPress.
+# Wordpress WeChat Mini Program 
+A WeChat Mini Program designed for WordPress.
 
 Just one step to start the app if you have a WordPress website already deployed:
 
-Change the first line in the file `/utils/util.js`. The base URL should be changed to your website domain URL of WordPress.
+Open the file `/utils/util.js` and change the first line. The base URL should be changed to your website domain URL of WordPress.
+
+```Javascript
+const baseUrl = 'https://your.domain.com';
+```
+
+# Wordpress 微信小程序 
+一个为 WordPress 设计的微信小程序.
+
+如果你有一个已经部署好的 WordPress 网站，只需要一步来启动：
+
+打开文件 `/utils/util.js` 修改第一行，`baseUrl` 需要替换为你的 WordPress 网站的域名。
 
 ```Javascript
 const baseUrl = 'https://your.domain.com';

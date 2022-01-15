@@ -42,7 +42,7 @@
         "minifyWXML": true
     },
     "compileType": "miniprogram",
-    "libVersion": "2.10.1",
+    "libVersion": "2.21.2",
     "appid": "wxcef105578c3375f7",
     "projectname": "wordpress-wechat",
     "debugOptions": {

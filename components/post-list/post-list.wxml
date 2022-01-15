@@ -2,8 +2,7 @@
 <scroll-view class="post-container" scroll-y="true" enable-flex="true">
     <view class="post-item" wx:for="{{postList}}" wx:key="id" bindtap="toPostDetailsPage" hover-class="item-hover" hover-stay-time="1000" data-post-obj="{{item}}">
         <view class="post-img">
-            <!-- <image src="{{item.imageBigUrl}}"></image> -->
-            <image src="/icons/default_doc.png" class="img"></image>
+            <image src="{{item.postImage}}" class="img"></image>
         </view>
         <view class="post-info">
             <view class="title">

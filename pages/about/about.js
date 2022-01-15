@@ -12,7 +12,7 @@ Page({
 
     loadAboutData: function () {
         wx.showLoading({ title: '加载中' });
-        HttpClient.get('/wp-json/wp/v2/pages?_fields=content&slug=about', null, (res) => {
+        HttpClient.get('/wp-json/wp/v2/pages?_fields=content&slug=about&per_page=1', null, (res) => {
             wx.hideLoading();
 
             let pageList = res.data;
