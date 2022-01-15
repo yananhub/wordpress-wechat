@@ -9,6 +9,10 @@ Open the file `/utils/util.js` and change the first line. The base URL should be
 const baseUrl = 'https://your.domain.com';
 ```
 
+Scan the following QR code to experience:
+
+![QR code](https://raw.githubusercontent.com/yanandgit/image-repo/main/wordpress-wechat/wechat_qrcode.png){:height="230px" width="230px"}
+
 # Wordpress 微信小程序 
 一个为 WordPress 设计的微信小程序.
 
@@ -19,3 +23,7 @@ const baseUrl = 'https://your.domain.com';
 ```Javascript
 const baseUrl = 'https://your.domain.com';
 ```
+
+扫描下面的二维码体验:
+
+![QR code](https://raw.githubusercontent.com/yanandgit/image-repo/main/wordpress-wechat/wechat_qrcode.png){:height="230px" width="230px"}
