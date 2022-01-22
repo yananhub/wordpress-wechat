@@ -1,5 +1,5 @@
 // components/post-list/post-list.js
-import { HttpClient, removeHtmlTag } from '../../utils/util.js';
+import { formatTime, HttpClient, removeHtmlTag } from '../../utils/util.js';
 
 Component({
     /**
@@ -60,18 +60,24 @@ Component({
 
         _loadPostListData: function () {
             wx.showLoading({ title: '加载中' });
-    
+            
+            if (!this.data.queryParam._fields) {
+                this.data.queryParam._fields = 'id,title,modified,excerpt,featured_media';
+            }
             HttpClient.get('/wp-json/wp/v2/posts', this.data.queryParam, (res) => {
                 wx.hideLoading();
     
                 this.totalPage = res.header['X-WP-TotalPages'];
     
                 let postList = res.data;
-                let postIds = [];
+                let imageIds = [];
                 for (let item of postList) {
                     item.excerpt.rendered = removeHtmlTag(item.excerpt.rendered);
+                    item.modified = formatTime(item.modified);
                     item.postImage = '/icons/default_doc.png';
-                    postIds.push(item.id);
+                    if (item.featured_media != 0) {
+                        imageIds.push(item.featured_media);
+                    }
                 }
                 postList = this.data.postList.concat(postList);
                 this.setData({
@@ -79,21 +85,24 @@ Component({
                     showNoMoreData: this.data.queryParam.page >= this.totalPage
                 });
 
-                this._loadPostImgage(postIds);
+                this._loadPostImgage(imageIds);
             });
         },
 
-        _loadPostImgage: function (postIds) {
+        _loadPostImgage: function (imageIds) {
+            if (imageIds.length == 0) {
+                return;
+            }
             let queryParam = {
                 media_type: 'image',
-                _fields: 'post,source_url',
-                parent: postIds.join(',')
+                _fields: 'id,source_url',
+                include: imageIds.join(',')
             };
             HttpClient.get('/wp-json/wp/v2/media', queryParam, (res) => {
                 let postMap = {};
                 for (let item of res.data) {
-                    if (!postMap[item.post]) {
-                        postMap[item.post] = item.source_url;
+                    if (!postMap[item.id]) {
+                        postMap[item.id] = item.source_url;
                     }
                 }
 
@@ -101,8 +110,8 @@ Component({
                 let postList = this.data.postList;
                 for (let index = 0; index < postList.length; index++) {
                     const postItem = postList[index];
-                    if (postMap[postItem.id]) {
-                        postsModel[`postList[${index}].postImage`] = postMap[postItem.id];
+                    if (postMap[postItem.featured_media]) {
+                        postsModel[`postList[${index}].postImage`] = postMap[postItem.featured_media];
                     }
                 }
                 this.setData(postsModel);

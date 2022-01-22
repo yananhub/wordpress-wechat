@@ -6,7 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        queryParam: { _fields: 'id,title,modified,excerpt', page: 1 }
+        queryParam: { page: 1 }
     },
 
     /**

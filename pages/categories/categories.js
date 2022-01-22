@@ -9,7 +9,7 @@ Page({
     data: {
         navTab: [],
         currentTab: {},
-        queryParam: { _fields: 'id,title,modified,excerpt' }
+        queryParam: { }
     },
 
     /**

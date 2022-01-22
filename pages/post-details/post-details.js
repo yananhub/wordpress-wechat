@@ -1,5 +1,5 @@
 // pages/post-details/post-details.js
-import { HttpClient } from '../../utils/util.js';
+import { formatTime, HttpClient } from '../../utils/util.js';
 
 Page({
 
@@ -36,7 +36,11 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function () {
+        return { title: this.data.postDetailsModel.title.rendered }
+    },
 
+    onShareTimeline: function () {
+        return { title: this.data.postDetailsModel.title.rendered }
     },
 
     loadPostDetails: function (postId) {
@@ -46,6 +50,8 @@ Page({
         };
         HttpClient.get(`/wp-json/wp/v2/posts/${postId}`, data, (res) => {
             wx.hideLoading();
+
+            res.data.modified = formatTime(res.data.modified);
             this.setData({
                 postDetailsModel: res.data
             });

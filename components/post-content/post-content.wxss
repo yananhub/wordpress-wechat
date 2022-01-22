@@ -43,3 +43,7 @@
     max-width: 100%;
     height: auto;
 }
+
+.has-vivid-red-color {
+    color: #cf2e2e;
+}
