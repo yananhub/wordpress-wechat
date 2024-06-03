@@ -42,20 +42,20 @@ const _convertPostDetails = res => {
 
 // ====================== Converters end ===================================
 
-const _loadPostListData = function(page) {
+const _loadPostListData = function ({ page, categories }) {
+    let queryParam = { _fields: POST_LIST_FIELDS, page: page };
+    if (categories) {
+        queryParam.categories = categories;
+    }
     return HttpClient.get('/wp-json/wp/v2/posts')
-        .data({ _fields: POST_LIST_FIELDS, page: page })
+        .data(queryParam)
         .showLoading(true)
         .map(_conertPostListData)
         .buildPromise();
 }
 
 const _loadPostImgage = function (imageIds) {
-    let queryParam = {
-        media_type: 'image',
-        _fields: 'id,source_url',
-        include: imageIds.join(',')
-    };
+    let queryParam = { media_type: 'image', _fields: 'id,source_url', include: imageIds.join(',') };
     return HttpClient.get('/wp-json/wp/v2/media')
         .data(queryParam)
         .map(_convertPostImgage)

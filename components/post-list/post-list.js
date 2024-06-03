@@ -60,7 +60,7 @@ Component({
         },
 
         _loadPostListData: function () {
-            dataService.loadPostListData(this.data.queryParam.page).then(({postList, totalPage}) => {
+            dataService.loadPostListData(this.data.queryParam).then(({postList, totalPage}) => {
                 this.totalPage = totalPage;
                 let imageIds = [];
                 for (let item of postList) {
