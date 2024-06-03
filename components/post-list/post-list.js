@@ -1,11 +1,12 @@
 // components/post-list/post-list.js
-import { formatTime, HttpClient, removeHtmlTag } from '../../utils/util.js';
+import dataService from '../../utils/data-service.js';
 
 Component({
     /**
      * 组件的属性列表
      */
     properties: {
+        // {page, categories}
         queryParam: {
             type: Object,
             observer: function(newVal, oldVal) {
@@ -59,22 +60,10 @@ Component({
         },
 
         _loadPostListData: function () {
-            wx.showLoading({ title: '加载中' });
-            
-            if (!this.data.queryParam._fields) {
-                this.data.queryParam._fields = 'id,title,modified,excerpt,featured_media';
-            }
-            HttpClient.get('/wp-json/wp/v2/posts', this.data.queryParam, (res) => {
-                wx.hideLoading();
-    
-                this.totalPage = res.header['X-WP-TotalPages'];
-    
-                let postList = res.data;
+            dataService.loadPostListData(this.data.queryParam.page).then(({postList, totalPage}) => {
+                this.totalPage = totalPage;
                 let imageIds = [];
                 for (let item of postList) {
-                    item.excerpt.rendered = removeHtmlTag(item.excerpt.rendered);
-                    item.modified = formatTime(item.modified);
-                    item.postImage = '/icons/default_doc.png';
                     if (item.featured_media != 0) {
                         imageIds.push(item.featured_media);
                     }
@@ -82,36 +71,23 @@ Component({
                 postList = this.data.postList.concat(postList);
                 this.setData({
                     postList: postList,
-                    showNoMoreData: this.data.queryParam.page >= this.totalPage
+                    showNoMoreData: this.data.queryParam.page >= totalPage
                 });
 
-                this._loadPostImgage(imageIds);
+                if (imageIds.length > 0) {
+                    this._loadPostImgage(imageIds);
+                }
             });
         },
 
         _loadPostImgage: function (imageIds) {
-            if (imageIds.length == 0) {
-                return;
-            }
-            let queryParam = {
-                media_type: 'image',
-                _fields: 'id,source_url',
-                include: imageIds.join(',')
-            };
-            HttpClient.get('/wp-json/wp/v2/media', queryParam, (res) => {
-                let postMap = {};
-                for (let item of res.data) {
-                    if (!postMap[item.id]) {
-                        postMap[item.id] = item.source_url;
-                    }
-                }
-
+            dataService.loadPostImgage(imageIds).then(postImgMap => {
                 let postsModel = {};
                 let postList = this.data.postList;
                 for (let index = 0; index < postList.length; index++) {
                     const postItem = postList[index];
-                    if (postMap[postItem.featured_media]) {
-                        postsModel[`postList[${index}].postImage`] = postMap[postItem.featured_media];
+                    if (postImgMap[postItem.featured_media]) {
+                        postsModel[`postList[${index}].postImage`] = postImgMap[postItem.featured_media];
                     }
                 }
                 this.setData(postsModel);

@@ -43,7 +43,6 @@
 }
 
 .post-item .post-info .title {
-    /* height: 30%; */
     position: relative;
 }
 
@@ -54,7 +53,6 @@
 
 .post-item .post-info .time .not-onmarket {
     font-size: 28rpx;
-    /* font-style: oblique; */
     color: #d9534f;
 }
 

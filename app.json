@@ -38,6 +38,7 @@
         "post-list": "/components/post-list/post-list",
         "post-content": "/components/post-content/post-content"
     },
+    "lazyCodeLoading": "requiredComponents",
     "style": "v2",
     "sitemapLocation": "sitemap.json"
 }

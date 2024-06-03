@@ -1,5 +1,5 @@
 // pages/post-details/post-details.js
-import { formatTime, HttpClient } from '../../utils/util.js';
+import dataService from '../../utils/data-service.js';
 
 Page({
 
@@ -15,21 +15,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.loadPostDetails(options.postId);
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
+        this._loadPostDetails(options.postId);
     },
 
     /**
@@ -43,18 +29,7 @@ Page({
         return { title: this.data.postDetailsModel.title.rendered }
     },
 
-    loadPostDetails: function (postId) {
-        wx.showLoading({ title: '加载中' });
-        let data = {
-            _fields: 'id,title,modified,content'
-        };
-        HttpClient.get(`/wp-json/wp/v2/posts/${postId}`, data, (res) => {
-            wx.hideLoading();
-
-            res.data.modified = formatTime(res.data.modified);
-            this.setData({
-                postDetailsModel: res.data
-            });
-        });
-    },
+    _loadPostDetails: function (postId) {
+        dataService.loadPostDetails(postId).then(details => this.setData({ postDetailsModel: details }));
+    }
 })

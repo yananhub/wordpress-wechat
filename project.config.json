@@ -7,7 +7,7 @@
     "setting": {
         "urlCheck": false,
         "es6": true,
-        "enhance": false,
+        "enhance": true,
         "postcss": true,
         "preloadBackgroundData": false,
         "minified": true,
@@ -38,12 +38,12 @@
         "packNpmRelationList": [],
         "minifyWXSS": true,
         "disableUseStrict": false,
+        "minifyWXML": true,
         "showES6CompileOption": false,
-        "useCompilerPlugins": false,
-        "minifyWXML": true
+        "useCompilerPlugins": false
     },
     "compileType": "miniprogram",
-    "libVersion": "2.21.2",
+    "libVersion": "2.21.3",
     "appid": "wxcef105578c3375f7",
     "projectname": "wordpress-wechat",
     "simulatorType": "wechat",

@@ -44,7 +44,7 @@
 
 .about .content-row {
     margin: 12rpx 0;
-    padding: 0 40rpx;
+    padding: 20rpx 40rpx 0 40rpx;
     height: 1020rpx;
     background-color: white;
 }

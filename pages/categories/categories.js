@@ -1,5 +1,5 @@
 // pages/order-list/order-list.js
-import { HttpClient } from '../../utils/util.js';
+import dataService from '../../utils/data-service.js';
 
 Page({
 
@@ -16,13 +16,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.loadCatetoriesData();
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
+        this._loadCatetoriesData();
     },
 
     /**
@@ -31,13 +25,6 @@ Page({
     onReachBottom: function () {
         let currentPage = this.data.queryParam.page;
         this.setData({ 'queryParam.page': currentPage + 1 });
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-        
     },
 
     onTabChange: function (e) {
@@ -51,9 +38,8 @@ Page({
         }
     },
 
-    loadCatetoriesData: function() {
-        HttpClient.get('/wp-json/wp/v2/categories?_fields=id,name&orderby=count&order=desc', null, (res) => {
-            let categories = res.data;
+    _loadCatetoriesData: function() {
+        dataService.loadCatetoriesData().then(categories => {
             if (categories && categories.length > 0) {
                 this.setData({
                     navTab: categories,

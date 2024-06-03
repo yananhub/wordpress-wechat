@@ -5,7 +5,6 @@
 }
 
 .entry-content {
-    /* line-height: 24rpx; */
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', 'Hiragino Sans GB', '微软雅黑', 'WenQuanYi Micro Hei', STHeiti, SimSun, sans-serif;
 }
 
@@ -14,13 +13,11 @@
 }
 
 .wp-p {
-    /* line-height: 2em; */
     margin: 20rpx 0;
 }
 
 .wp-block-code {
     font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
-    /* display: block; */
     overflow: auto;
     padding: 20rpx;
     margin: 20rpx 0;

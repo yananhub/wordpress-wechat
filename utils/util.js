@@ -1,57 +1,84 @@
 const baseUrl = 'https://your.domain.com';
 
-const successHandler = function (orginHandler) {
-    return (res) => {
-        if (res.statusCode == 401) {
-            console.warn(res.data.message);
-            // 错误处理
-            wx.showToast({
-                title: '会话失效',
-                icon: 'none',
-                success: () => {
-                    wx.removeStorageSync('token');
-                    getApp().login();
-                    wx.reLaunch({
-                        url: '/pages/list-posts/list-posts'
-                    });
-                }
-            })
-        } else if (res.statusCode == 500) {
-            console.error(res.data.message);
-            // 错误处理
-            wx.showToast({
-                title: '未知错误',
-                icon: 'none'
-            });
-        } else {
-            orginHandler(res);
-        }
-    };
-}
-
 const request = (urlPath, method, data, success, fail) => {
     wx.request({
         url: baseUrl + urlPath,
         method: method,
         data: data,
-        header: {
-            'Accept': 'application/json',
-            'Token': wx.getStorageSync('token')
-        },
-        success: successHandler(success),
+        header: { 'Accept': 'application/json' },
+        success: success,
         fail: fail
     });
 }
 
+class RequestBuilder {
+    constructor() {
+        this._url = null;
+        this._method = 'GET';
+        this._data = null;
+        this._showLoading = false;
+        this._mapper = mapper => mapper;
+    }
+
+    url(urlPath) {
+        this._urlPath = urlPath;
+        return this;
+    }
+
+    method(method) {
+        this._method = method;
+        return this;
+    }
+
+    data(data) {
+        this._data = data;
+        return this;
+    }
+
+    showLoading(showLoading) {
+        this._showLoading = showLoading;
+        return this;
+    }
+
+    map(mapper) {
+        this._mapper = mapper;
+        return this;
+    }
+
+    buildPromise() {
+        let resolve, reject;
+        let promise = new Promise((res, rej) => {
+            resolve = res;
+            reject = rej;
+        });
+        let _this = this;
+
+        if (_this._showLoading) {
+            wx.showLoading({ title: '加载中' });
+        }
+        request(this._urlPath, this._method, this._data, function success(resp) {
+            if (_this._showLoading) {
+                wx.hideLoading();
+            }
+            resolve(_this._mapper(resp));
+        }, function fail(error) {
+            reject(error);
+        });
+
+        return promise;
+    }
+}
+
 const HttpClient = {
-    request: (urlPath, method, data, success, fail) => {
-        request(urlPath, method, data, success, fail);
+    post: (urlPath) => {
+        return new RequestBuilder()
+            .url(urlPath)
+            .method('POST');
     },
-    post: (urlPath, data, success, fail) => {
-        request(urlPath, 'POST', data, success, fail);
-    },
-    get: (urlPath, data, success, fail) => {
-        request(urlPath, 'GET', data, success, fail);
+    get: (urlPath) => {
+        return new RequestBuilder()
+            .url(urlPath)
+            .method('GET');
     }
 }
 
@@ -72,11 +99,6 @@ const optimizeHtml = (html) => {
 
 const formatTime = (time) => {
     return time.replace('T', ' ');
-}
-
-const formatNumber = (n) => {
-    n = n.toString()
-    return n[1] ? n : '0' + n
 }
 
 module.exports = {
