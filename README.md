@@ -11,7 +11,7 @@ const baseUrl = 'https://your.domain.com';
 
 Scan the following QR code to experience:
 
-![QR code](https://blog.qanmi.com/wp-content/uploads/2022/01/wechat_qrcode.png)
+![QR code](https://blog.yanand.tech/wp-content/uploads/2022/01/wechat_qrcode.png)
 
 # WordPress 微信小程序 
 一个为 WordPress 设计的微信小程序。
@@ -26,4 +26,4 @@ const baseUrl = 'https://your.domain.com';
 
 扫描下面的二维码体验：
 
-![QR code](https://blog.qanmi.com/wp-content/uploads/2022/01/wechat_qrcode.png)
+![QR code](https://blog.yanand.tech/wp-content/uploads/2022/01/wechat_qrcode.png)
